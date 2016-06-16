@@ -352,14 +352,15 @@ uis.controller('uiSelectCtrl',
         if(ctrl.tagging.isActivated) {
           // if taggingLabel is disabled, we pull from ctrl.search val
           if ( ctrl.taggingLabel === false ) {
-            if ( ctrl.activeIndex < 0 ) {
+            if ( ctrl.activeIndex < 0 && !$event ) {
               item = ctrl.tagging.fct !== undefined ? ctrl.tagging.fct(ctrl.search) : ctrl.search;
               if (!item || angular.equals( ctrl.items[0], item ) ) {
                 return;
               }
             } else {
               // keyboard nav happened first, user selected from dropdown
-              item = ctrl.items[ctrl.activeIndex];
+              if(!$event)
+                  item = ctrl.items[ctrl.activeIndex];
             }
           } else {
             // tagging always operates at index zero, taggingLabel === false pushes
