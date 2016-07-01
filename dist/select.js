@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.18.0 - 2016-06-16T11:43:41.950Z
+ * Version: 0.18.0 - 2016-07-01T21:28:06.309Z
  * License: MIT
  */
 
@@ -115,7 +115,8 @@ var uis = angular.module('ui.select', [])
   generateId: function() {
     return latestId++;
   },
-  appendToBody: false
+  appendToBody: false,
+  animate: true
 })
 
 // See Rename minErr and make it accessible from outside https://github.com/angular/angular.js/issues/6913
@@ -312,7 +313,7 @@ uis.controller('uiSelectCtrl',
   // Use $injector to check for $animate and store a reference to it
   ctrl.$animate = (function () {
     try {
-      return $injector.get('$animate');
+      return $injector.get('$animate') && uiSelectConfig.animate;
     } catch (err) {
       // $animate does not exist
       return null;

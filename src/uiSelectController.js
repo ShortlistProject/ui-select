@@ -47,7 +47,7 @@ uis.controller('uiSelectCtrl',
   // Use $injector to check for $animate and store a reference to it
   ctrl.$animate = (function () {
     try {
-      return $injector.get('$animate');
+      return $injector.get('$animate') && uiSelectConfig.animate;
     } catch (err) {
       // $animate does not exist
       return null;
